@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tip Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #00264d; /* Dark blue background */
+      color: white;
+    }
+    .calculator {
+      width: 300px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      color: #00264d; /* Dark blue text */
+    }
+    .calculator h1 {
+      background-color: #ffa500; /* Orange header */
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border-radius: 5px;
+      margin-top: -20px;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #20c997; /* Teal button */
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #158a69; /* Darker teal */
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h1>TIP CALCULATOR</h1>
+    <div>
+      <label for="bill">Bill Amount</label><br>
+      <input type="number" id="bill" placeholder="0" />
+    </div>
+    <div>
+      <label for="service">How was the service ?</label><br>
+      <select id="service">
+        <option value="0">Choose...</option>
+        <option value="0.25">25% - Top Notch</option>
+        <option value="0.20">20% - Great</option>
+        <option value="0.15">15% - Good</option>
+        <option value="0.10">10% - Okay</option>
+        <option value="0.05">5% - Bad</option>
+      </select>
+    </div>
+    <div>
+      <label for="persons">Total number of persons</label><br>
+      <input type="number" id="persons" placeholder="1" value="1" />
+    </div>
+    <button onclick="calculateTip()">Calculate</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateTip() {
+      let bill = document.getElementById("bill").value;
+      let service = document.getElementById("service").value;
+      let persons = document.getElementById("persons").value;
+
+      if (bill === "" || service === "0") {
+        alert("Please enter values!");
+        return;
+      }
+
+      if (persons <= 0) {
+          persons = 1;
+          document.getElementById("persons").value = 1;
+      }
+
+      let tipAmount = (bill * service) / persons;
+      tipAmount = tipAmount.toFixed(2);
+
+      document.getElementById("result").innerHTML = "Tip Amount: " + tipAmount + " ₹ each";
+    }
+  </script>
+</body>
+</html>
